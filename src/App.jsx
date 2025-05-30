@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import './App.css'
 
-import Landing from './components/Landing/Landing' // or not! 
 import GithubForm from './components/GithubForm/GithubForm'
+import ProcessingScreen from './components/ProcessingScreen/ProcessingScreen'
 
 import * as GithubService from './services/GithubService' // should put this in Landing isntead?
 import * as AirtableService from './services/AirtableService'
@@ -21,9 +21,9 @@ function App() {
     <>
       <h1>MonkeyHR</h1>
       <GithubForm />
-      {/* <Landing  /> */}
-      {/* <LoadingScreen />
-      <Dashboard /> */}
+      <ProcessingScreen />
+      {/* <Dashboard /> */}
+      <img className='monkey-img-landing' src='images/monkey.png' />
     </>  
   )
 }
