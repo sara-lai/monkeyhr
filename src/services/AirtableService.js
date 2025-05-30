@@ -16,9 +16,14 @@ const updateReport = () => {
     console.log('udpate report...')
 }
 
+const deleteReport = () => {
+    console.log('deleting report...')
+}
+
 export {
     getReport,
     getAllReports,
     createReport,
-    updateReport
+    updateReport,
+    deleteReport
 }

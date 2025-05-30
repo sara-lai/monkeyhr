@@ -51,9 +51,18 @@ body {
   width: 100px;
 }
 
+.github-form input {
+  width: 200px;
+  padding: 8px;
+}
+
 .landing-box {
   height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.processing-container {
+  max-height: 600px;
 }

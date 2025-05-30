@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './App.css'
 
 import GithubForm from './components/GithubForm/GithubForm'
-import ProcessingScreen from './components/ProcessingScreen/ProcessingScreen'
+import Processor from './components/Processor/Processor'
 
 import * as GithubService from './services/GithubService' // should put this in Landing isntead?
 import * as AirtableService from './services/AirtableService'
@@ -11,19 +11,24 @@ import * as AirtableService from './services/AirtableService'
 function App() {
 
   const [repoURL, setRepoURL] = useState('')
+  const [projectType, setProjectType] = useState('...')
+  const [repoData, setRepoData] = useState({})
   const [processing, setProcessing] = useState(false)
 
-  function kickoffProcessing(query) {
+  async function kickoffProcessing(query) {
     setRepoURL(query)
     setProcessing(true)
 
-    // getRepoBasics??    
+    let repoData = await GithubService.getRepoBasics(query)
+    setProjectType(repoData.language) // or dont use
+    setRepoData(repoData)  
   }  
 
+  console.log('hello repo!', repoData)
   console.log('after form submit:', repoURL)
 
-  function getRepoBasics() {
-  }
+  // function getRepoBasics() {
+  // }
   
   function processCommits() {
     // live here or in landing? 
@@ -38,7 +43,7 @@ function App() {
 
       {!processing && <GithubForm handleFormSubmit={kickoffProcessing} />}
 
-      {processing && <ProcessingScreen repoURL={repoURL} />}
+      {processing && <Processor repoURL={repoURL} repoData={repoData} />}
 
       {/* <Dashboard /> */}
 
