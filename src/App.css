@@ -47,5 +47,13 @@ body {
 
 
 .monkey-img-landing {
-  max-height: 100px;
+  height: 100px;
+  width: 100px;
+}
+
+.landing-box {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

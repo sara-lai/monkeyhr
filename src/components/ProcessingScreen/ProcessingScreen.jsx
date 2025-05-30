@@ -1,7 +1,7 @@
-const ProcessingScreen = () => {
+const ProcessingScreen = (props) => {
 
     return (
-        <p> processing.... </p>
+        <p> Processing: {props.repoURL}  </p>
     )
 
 }
