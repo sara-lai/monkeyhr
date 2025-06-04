@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 
-import GithubForm from './components/GithubForm/GithubForm'
+import Landing from './components/Landing/Landing'
 import Processor from './components/Processor/Processor'
 import Dashboard from './components/Dashboard/Dashboard'
 
@@ -65,23 +65,16 @@ function App() {
   }
 
   return (
-    <div className='landing-box'>
-      <h1>MonkeyHR</h1>
+    <div className='landing-box'>     
 
-      {preProcess && <GithubForm handleFormSubmit={kickoffProcessing} />}
+      {preProcess && <Landing handleFormSubmit={kickoffProcessing} />}
 
       {processing && <Processor repoURL={repoURL} repoData={repoData} />}
 
       {newReportReady && <Dashboard />}
 
-
       {/* <Dashboard /> */}
 
-      <div className='monkey-zone'>
-        <img className='monkey-img-landing' src='images/monkey.png' />
-        <img className='monkey-img-landing' src='images/monkey.png' />
-        <img className='monkey-img-landing' src='images/monkey.png' />
-      </div>
     </div>  
   )
 }

@@ -16,18 +16,20 @@ const GithubForm = (props) => {
     }
 
     return (
-        <form className='github-form' onSubmit={handleSubmit}>
-            <p>Github Repository URL, exclude https://www & .com</p>
-            <input
-                id="repo-url"
-                name="repo-url"
-                value={query}
-                onChange={handleChange}
-                placeholder="Owner/Repo"
-                required
-            />   
-            <button>Submit</button>         
-        </form>
+        <>
+            <form className='github-form' onSubmit={handleSubmit}>
+                <p>Github Repository URL, exclude https://www & .com</p>
+                <input
+                    id="repo-url"
+                    name="repo-url"
+                    value={query}
+                    onChange={handleChange}
+                    placeholder="Owner/Repo"
+                    required
+                />   
+                <button>Submit</button>         
+            </form>         
+        </>
     )
 }
 
