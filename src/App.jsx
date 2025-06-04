@@ -4,7 +4,7 @@ import './App.css'
 
 import GithubForm from './components/GithubForm/GithubForm'
 import Processor from './components/Processor/Processor'
-import ReportFull from './components/ReportFull/ReportFull'
+import Dashboard from './components/Dashboard/Dashboard'
 
 import * as GithubService from './services/GithubService' // should put this in Landing isntead?
 import * as AirtableService from './services/AirtableService'
@@ -17,6 +17,7 @@ function App() {
   const [repoURL, setRepoURL] = useState('')
   const [projectType, setProjectType] = useState('...')
   const [repoData, setRepoData] = useState({})
+  const [newReportData, setNewReportData] = useState({})
 
   // todo switching to Routes will probably make this unnecessary
   const [preProcess, setPreProcess] = useState(true)
@@ -35,8 +36,7 @@ function App() {
     // usage from https://javascript.info/async-await
     await new Promise((resolve, reject) => setTimeout(resolve, 3000))
 
-    setnewReportReady(true)
-    setProcessing(false)
+    saveNewReport()
   }  
 
   console.log('hello repo!', repoData)
@@ -45,7 +45,17 @@ function App() {
   // function getRepoBasics() {
   // }
 
-  const reportData = 
+  async function saveNewReport(){    
+    // data coming from imported mockReportData, for now
+
+    const reportData = await AirtableService.createReport(mockReportData)
+
+    setNewReportData(reportData)
+
+    setnewReportReady(true)
+    setProcessing(false)
+  }
+
   
   function processCommits() {
     // live here or in landing?   
@@ -62,7 +72,7 @@ function App() {
 
       {processing && <Processor repoURL={repoURL} repoData={repoData} />}
 
-      {newReportReady && <ReportFull data={mockReportData} />}
+      {newReportReady && <Dashboard />}
 
 
       {/* <Dashboard /> */}

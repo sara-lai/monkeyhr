@@ -4,7 +4,7 @@ const getRepoBasics = async (ownerRepo) => { // input as "owner/repoName"
     // GET /repos/{owner}/{repo}
     try {
         const response = await fetch(BASE_URL + '/repos/' + ownerRepo)
-        const data = response.json()
+        const data = await response.json()
         return data
     } catch(err) {
         console.log(err)
