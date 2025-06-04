@@ -39,9 +39,6 @@ function App() {
     saveNewReport()
   }  
 
-  console.log('hello repo!', repoData)
-  console.log('after form submit:', repoURL)
-
   // function getRepoBasics() {
   // }
 

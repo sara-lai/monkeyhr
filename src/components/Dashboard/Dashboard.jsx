@@ -1,13 +1,35 @@
+import { useState, useEffect } from 'react'
+
+import * as AirtableService from '../../services/AirtableService'
+
+import ReportSummary from '../ReportSummary/ReportSummary'
+
 const Dashboard = () => {
-    // todo - airtable logic to fetch all reports
 
-    // todo - generate report summaries from each report
+    const [allReports, setAllReports] = useState([])
 
+    async function getAllReports() {
+        const reports = await AirtableService.getAllReports()
+        setAllReports(reports)
+    }    
+
+    // loading all existing report summaries when visit dashboard
+    useEffect(() => {
+        getAllReports()
+    }, [])
+
+    console.log('here', allReports)
 
     return (
         <>
             <h1> Dashboard </h1>
-            <p>list report cards here</p>
+            <h3>All Reports</h3>
+            <div className='reports-summary-box'>
+                <p>number of reports: {allReports.length}</p>
+                {allReports.map(report => (
+                    <ReportSummary report={report} />
+                ))}
+            </div>
         </>
     )
 }

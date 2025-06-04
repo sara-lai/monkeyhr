@@ -6,8 +6,26 @@ const getReport = () => {
     console.log('getting a report...')
 }
 
-const getAllReports = () => {
-    console.log('getting all report...')
+// probably no reason to use this in final version
+const getAllReports = async () => {
+    try {
+        console.log("attempt getAllReports!")
+        const res = await fetch(BASE_URL, {
+            headers: {
+                'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
+            }
+        })
+        const data = await res.json()
+        return data.records // airtable returns {'records': [....]}
+        console.log('getting All reports!', data)      
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+// todo, version when tie to candidate
+const getAllReportsforCandidate = () => {
+
 }
 
 const createReport = async (reportData) => {
@@ -26,7 +44,7 @@ const createReport = async (reportData) => {
             }
           })
         })
-        data = await res.json()
+        const data = await res.json()
         console.log('data from Airtable create', data)
         return data
     } catch (err) {
