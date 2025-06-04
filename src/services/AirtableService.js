@@ -25,11 +25,11 @@ const getAllReports = async () => {
 
 // todo, version when tie to candidate
 const getAllReportsforCandidate = () => {
-
 }
 
-const createReport = async (reportData) => {
+const createReport = async (repoURL, projectType, reportData) => { 
     // copying from GA example
+    console.log('yes i am here', repoURL)
     try {
         const res = await fetch(BASE_URL, {
           method: 'POST',
@@ -39,7 +39,8 @@ const createReport = async (reportData) => {
           },
           body: JSON.stringify({
             'fields': {
-                'RepoName': 'TESTING',
+                'RepoURL': repoURL,
+                'ProjectType': projectType,
                 'ReportData': JSON.stringify(reportData), // use another JSON.stringify ??
             }
           })

@@ -18,7 +18,6 @@ const GithubForm = (props) => {
     return (
         <>
             <form className='github-form' onSubmit={handleSubmit}>
-                <p>Github Repository URL, exclude https://www & .com</p>
                 <input
                     id="repo-url"
                     name="repo-url"

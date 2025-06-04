@@ -1,0 +1,28 @@
+.monkey-img-landing {
+    height: 100px;
+    width: 100px;
+}
+
+.monkeyhr-logo {
+    text-align: left;
+    font-size: 2.5rem;
+}
+  
+.github-form input {
+    width: 260px;
+    padding: 20px;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+  
+.github-form button {
+    margin-left: 20px;
+    padding: 20px;
+}
+  
+.landing-box {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
