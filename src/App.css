@@ -15,9 +15,3 @@ body {
     animation: logo-spin infinite 20s linear;
   }
 }
-
-
-
-.processing-container {
-  max-height: 600px;
-}
