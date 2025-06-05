@@ -10,17 +10,36 @@ import './Dashboard.css'
 // todo -  currently dashboard is getting all data from airtable, but to get latest report probably needs props!
 
 const LatestReportSummary = () => {
-  const categories = ['Commits', 'Iteration', 'Code Choices', 'Code Style', 'Artefacts', 'AI Assessment']
+  
+  const reportStats = [
+    {'id': 'commits', 'display': 'Commits', 'flags': [2,2,2,2,2] },
+    {'id': 'iteration', 'display': 'Iteration', 'flags': [1,2,2,1,2] },
+    {'id': 'code-choices', 'display': 'Code Choices', 'flags': [2,2,1,2,2,2] },
+    {'id': 'code-style', 'display': 'Code Style', 'flags': [1,2,2] },
+    {'id': 'artefacts', 'display': 'Artefacts', 'flags': [1,2,2,2] },
+    {'id': 'ai-assessment', 'display': 'AI Assessment', 'flags': [2,2,2,2,2] },
+  ]
+
+  const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green'}
 
   return (
-    <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 8, minHeight: 300 }}>
+    <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 4, minHeight: 300 }}>
       <div className='categories-flags'>
-        {categories.map((category) => (
+        {reportStats.map((category) => (
           <div className='category-flag-set'>
-            <span>{category}</span>
-            <FlagIcon sx={{ color: 'green' }} /> 
+            <span>{category.display}</span>
+            <div class='flags-row'>
+              {category.flags.map(flag => (
+                <FlagIcon sx={{ color: flagColorKeys[flag], p: .5 }} /> 
+              ))}    
+             </div>        
           </div>
         ))}
+        <Divider sx={{ my: 2 }} />
+        <div className='latest-report-bottomline'>
+          <span>Overall: very minor concern</span>        
+          <button>view report</button>
+        </div>
       </div>
     </Card>    
   )

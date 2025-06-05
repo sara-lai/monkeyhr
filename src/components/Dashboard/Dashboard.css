@@ -21,9 +21,25 @@
     gap: 10px;  
     width: 100%;
     max-width: 400px;
+    margin: 0 auto;
 }
 
 .category-flag-set {
     display: flex;
     justify-content: space-between;
+}
+
+.category-flag-set span {
+    width: 180px;
+    text-align: left;
+}
+
+.flags-row {
+    margin-left: 6px;
+}
+
+.latest-report-bottomline {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
