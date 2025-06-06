@@ -34,14 +34,13 @@ function App() {
     setRepoData(repoData)  
 
     // usage from https://javascript.info/async-await
-    await new Promise((resolve, reject) => setTimeout(resolve, 3000))
+    await new Promise((resolve, reject) => setTimeout(resolve, 8000))
 
     saveNewReport(query, repoData.language) // this is whacky .... despite 3 second delay saveNewReport will NOT have updated state variables
   }  
 
   async function saveNewReport(repoURL, projectType){    
     // data coming from imported mockReportData, for now
-    console.log('calling1', repoURL)
 
     const reportData = await AirtableService.createReport(repoURL, projectType, mockReportData)
 
@@ -50,8 +49,6 @@ function App() {
     setnewReportReady(true)
     setProcessing(false)
   }
-
-  console.log('calling2', repoURL)
 
   
   function processCommits() {

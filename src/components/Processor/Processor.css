@@ -3,3 +3,17 @@
     font-family: Roboto;
     letter-spacing: 1.5px;
 }
+
+.active {
+    font-weight: 1000;
+    font-size: 1.2rem;
+}
+
+.dot-zone {
+    width: 400px;
+    margin: 0 auto;
+    text-align: left;
+    overflow-wrap: break-word;
+    font-size: 1.8rem;
+    line-height: 20px;
+}
