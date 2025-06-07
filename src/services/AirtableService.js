@@ -2,8 +2,20 @@
 
 const BASE_URL = 'https://api.airtable.com/v0/appw87dXqaC1qljNj/tblJt2K6UNrTM5K4I' // reports table
 
-const getReport = () => {
-    console.log('getting a report...')
+const getReport = async (reportId) => {
+    try {
+        console.log("get report id: ", reportId)
+        const res = await fetch(BASE_URL + '/' + reportId, {
+            headers: {
+                'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
+            }
+        })
+        const data = await res.json()
+        console.log('the report', data)    
+        return data  
+    } catch (err) {
+        console.log(err)
+    }    
 }
 
 // probably no reason to use this in final version
@@ -16,15 +28,10 @@ const getAllReports = async () => {
             }
         })
         const data = await res.json()
-        return data.records // airtable returns {'records': [....]}
-        console.log('getting All reports!', data)      
+        return data.records // airtable returns {'records': [....]}   
     } catch (err) {
         console.log(err)
     }
-}
-
-// todo, version when tie to candidate
-const getAllReportsforCandidate = () => {
 }
 
 const createReport = async (repoURL, projectType, reportData) => { 
@@ -59,6 +66,10 @@ const updateReport = () => {
 
 const deleteReport = () => {
     console.log('deleting report...')
+}
+
+// todo, version when tie to candidate
+const getAllReportsforCandidate = () => {
 }
 
 export {

@@ -1,25 +1,32 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router';
+
+import * as AirtableService from '../../services/AirtableService'
 
 // todo - a GET to airtable may be more appropriate than passing allReports and filtering by id.
 
 const ReportFull = (props) => {
 
     const { reportId } = useParams() // see pokemon lab
+    const [report, setReport] = useState({})
 
-    const report = props.allReports.find(report => report.id === reportId)
+    // GET to airtable (vs. allReports/filtering - see graveyard)
+    async function getReport() {
+        const report = await AirtableService.getReport(reportId)
+        const reportDataObj = JSON.parse(report.fields.ReportData)
+        setReport(reportDataObj)
+    }        
+    useEffect(() => {
+        getReport()
+    }, [])
 
-    let reportDataObj = {}
-    if (report){
-        reportDataObj = JSON.parse(report.fields.ReportData)
-    }
-    
     return (
         <>
-            {Object.keys(reportDataObj).map(category => (
+            {Object.keys(report).map(category => (
                 <div className='category-set'>
                     <h3>{category}</h3>
                     <div className='tests-set'>
-                        {reportDataObj[category].map(test => (
+                        {report[category].map(test => (
                             <div className='test-block'>
                                 <p>{test.description}</p>
                                 <p>result: flag-icon</p>
@@ -33,3 +40,14 @@ const ReportFull = (props) => {
 }
 
 export default ReportFull
+
+/* Graveyard 
+
+old approach passing in AllReports:
+const report = props.allReports.find(report => report.id === reportId)
+let reportDataObj = {}
+if (report){
+    reportDataObj = JSON.parse(report.fields.ReportData)
+}
+
+*/

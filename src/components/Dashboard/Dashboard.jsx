@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router';
-import { Route, Routes } from 'react-router'
 
 import * as AirtableService from '../../services/AirtableService'
 import ReportFull from '../ReportFull/ReportFull';
@@ -25,22 +24,23 @@ const LatestReportSummary = () => {
 
   const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green'}
 
+  // todo - do the <Link-to tag when have latest report
   return (
     <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 4, minHeight: 300 }}>
       <div className='categories-flags'>
         {reportStats.map((category) => (
           <div className='category-flag-set'>
             <span>{category.display}</span>
-            <div class='flags-row'>
+            <div className='flags-row'>
               {category.flags.map(flag => (
                 <FlagIcon sx={{ color: flagColorKeys[flag], p: .5 }} /> 
               ))}    
-             </div>        
+            </div>        
           </div>
         ))}
         <Divider sx={{ my: 2 }} />
         <div className='latest-report-bottomline'>
-          <span>Overall: very minor concern</span>        
+          <span>Overall: very minor concern</span> 
           <button>view report</button>
         </div>
       </div>
@@ -86,15 +86,12 @@ const Dashboard = () => {
           <h3>All Reports</h3>
           <div className='reports-summary-box'>
             {allReports.map(report => (
-                <Link to={`reports/${report.id}`}>
+                <Link to={`/reports/${report.id}`}>
                   <ReportSummary report={report} />
                 </Link>
             ))}
           </div>
-        </div>              
-        <Routes>
-          <Route path="reports/:reportId" element={<ReportFull allReports={allReports} />} />
-        </Routes>        
+        </div>                   
       </div>
     )
 }
