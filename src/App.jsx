@@ -6,7 +6,6 @@ import './App.css'
 import Landing from './components/Landing/Landing'
 import Processor from './components/Processor/Processor'
 import Dashboard from './components/Dashboard/Dashboard'
-import ReportFull from './components/ReportFull/ReportFull'
 
 import * as GithubService from './services/GithubService' // should put this in Landing isntead?
 import * as AirtableService from './services/AirtableService'
@@ -60,8 +59,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Landing handleFormSubmit={kickoffProcessing} />} />
       <Route path="/process" element={<Processor repoURL={repoURL} repoData={repoData} />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/report/:id" element={<ReportFull />} />
+      <Route path="/dashboard/*" element={<Dashboard />} />
+      <Route path="*" element={<h2>Whoops, nothing here!</h2>} />
     </Routes>
   )
 }

@@ -1,9 +1,16 @@
+import { useParams } from 'react-router';
 
 const ReportFull = (props) => {
 
+    const { reportId } = useParams() // see pokemon lab
+
+    const report = props.allReports.find(report => report.id === reportId)
+
+    console.log("here at reportFull", props.allReports)
+
     return (
         <>
-            {Object.keys(props.data).map(category => (
+            {Object.keys(report.fields).map(category => (
                 <div className='category-set'>
                     <h3>{category}</h3>
                     <div className='tests-set'>

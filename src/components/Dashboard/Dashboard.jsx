@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router';
+import { Route, Routes } from 'react-router'
 
 import * as AirtableService from '../../services/AirtableService'
+import ReportFull from '../ReportFull/ReportFull';
 
 import { Card, Divider, CardContent, Box } from '@mui/material';
 import FlagIcon from '@mui/icons-material/Flag';
@@ -52,8 +54,8 @@ const ReportSummary = (props) => {
   return (
     <Card sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 2, minHeight: 60, mb: 2, width: '100%', transition: 'transform 0.2s, box-shadow 0.2s', '&:hover': { transform: 'translateY(-2px)', boxShadow: 6, cursor: 'pointer', }, '&:focus': {outline: '2px solid #90caf9'} }}>
       <span>{props.report.fields.RepoURL}</span>
-      <span>{props.report.fields.ProjectType}</span>        
-      <button>view report</button>
+      <span>{props.report.fields.ProjectType}</span>
+      <button>view report</button>      
     </Card>
   )
 }
@@ -75,24 +77,25 @@ const Dashboard = () => {
     console.log('here', allReports)
 
     return (
-      <>
-        <div className='dashboard-wrapper'>
-          <div className='new-report-section'>
-            <h3>Latest Report</h3>
-            <LatestReportSummary />
-          </div>
-          <div className='previous-report-section'>
-            <h3>All Reports</h3>
-            <div className='reports-summary-box'>
-              {allReports.map(report => (
-                  <Link to={`/reports/${report.id}`}>
-                    <ReportSummary report={report} />
-                  </Link>
-              ))}
-            </div>
-          </div>              
+      <div className='dashboard-wrapper'>
+        <div className='new-report-section'>
+          <h3>Latest Report</h3>
+          <LatestReportSummary />
         </div>
-      </>
+        <div className='previous-report-section'>
+          <h3>All Reports</h3>
+          <div className='reports-summary-box'>
+            {allReports.map(report => (
+                <Link to={`reports/${report.id}`}>
+                  <ReportSummary report={report} />
+                </Link>
+            ))}
+          </div>
+        </div>              
+        <Routes>
+          <Route path="reports/:reportId" element={<ReportFull allReports={allReports} />} />
+        </Routes>        
+      </div>
     )
 }
 
