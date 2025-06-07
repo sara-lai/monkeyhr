@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { Route, Routes, useNavigate } from 'react-router'
 
 import './App.css'
 
 import Landing from './components/Landing/Landing'
 import Processor from './components/Processor/Processor'
 import Dashboard from './components/Dashboard/Dashboard'
+import ReportFull from './components/ReportFull/ReportFull'
 
 import * as GithubService from './services/GithubService' // should put this in Landing isntead?
 import * as AirtableService from './services/AirtableService'
@@ -19,22 +21,19 @@ function App() {
   const [repoData, setRepoData] = useState({})
   const [newReportData, setNewReportData] = useState({})
 
-  // todo switching to Routes will probably make this unnecessary
-  const [preProcess, setPreProcess] = useState(true)
-  const [processing, setProcessing] = useState(false)
-  const [newReportReady, setnewReportReady] = useState(false)
+  const navigate = useNavigate()
 
   async function kickoffProcessing(query) {
     setRepoURL(query)
-    setProcessing(true)
-    setPreProcess(false)
+    navigate("/process")
+
 
     let repoData = await GithubService.getRepoBasics(query)
     setProjectType(repoData.language) // or dont use
     setRepoData(repoData)  
 
     // usage from https://javascript.info/async-await
-    await new Promise((resolve, reject) => setTimeout(resolve, 7500))
+    await new Promise((resolve, reject) => setTimeout(resolve, 7000))
 
     saveNewReport(query, repoData.language) // this is whacky .... despite 3 second delay saveNewReport will NOT have updated state variables
   }  
@@ -46,8 +45,7 @@ function App() {
 
     setNewReportData(reportData)
 
-    setnewReportReady(true)
-    setProcessing(false)
+    navigate("/dashboard")
   }
 
   
@@ -59,15 +57,12 @@ function App() {
   }
 
   return (
-    <>
-      {preProcess && <Landing handleFormSubmit={kickoffProcessing} />}
-
-      {processing && <Processor repoURL={repoURL} repoData={repoData} />}
-
-      {newReportReady && <Dashboard />}
-
-      {/* <Dashboard /> */}
-    </>
+    <Routes>
+      <Route path="/" element={<Landing handleFormSubmit={kickoffProcessing} />} />
+      <Route path="/process" element={<Processor repoURL={repoURL} repoData={repoData} />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/report/:id" element={<ReportFull />} />
+    </Routes>
   )
 }
 

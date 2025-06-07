@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router';
 
 import * as AirtableService from '../../services/AirtableService'
 
@@ -49,13 +50,11 @@ const LatestReportSummary = () => {
 // ok the sx={{}} is getting ridiculous .... is this worth it? what's wrong with css?
 const ReportSummary = (props) => {
   return (
-    <>
-      <Card sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 2, minHeight: 60, mb: 2, width: '100%', transition: 'transform 0.2s, box-shadow 0.2s', '&:hover': { transform: 'translateY(-2px)', boxShadow: 6, cursor: 'pointer', }, '&:focus': {outline: '2px solid #90caf9'} }}>
-        <span>{props.report.fields.RepoURL}</span>
-        <span>{props.report.fields.ProjectType}</span>        
-        <button>view report</button>
-      </Card>
-    </>
+    <Card sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 2, minHeight: 60, mb: 2, width: '100%', transition: 'transform 0.2s, box-shadow 0.2s', '&:hover': { transform: 'translateY(-2px)', boxShadow: 6, cursor: 'pointer', }, '&:focus': {outline: '2px solid #90caf9'} }}>
+      <span>{props.report.fields.RepoURL}</span>
+      <span>{props.report.fields.ProjectType}</span>        
+      <button>view report</button>
+    </Card>
   )
 }
 
@@ -86,7 +85,9 @@ const Dashboard = () => {
             <h3>All Reports</h3>
             <div className='reports-summary-box'>
               {allReports.map(report => (
-                  <ReportSummary report={report} />
+                  <Link to={`/reports/${report.id}`}>
+                    <ReportSummary report={report} />
+                  </Link>
               ))}
             </div>
           </div>              

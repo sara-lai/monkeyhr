@@ -2,3 +2,4 @@ Should ProcessingScreen be more like DataProcessor with all the Github functions
 Material UI for components?
 See "Monkey HR Rules" document for 35 factors list
 
+Problem: adding routes seems to make dashboard load incredibily slow....
