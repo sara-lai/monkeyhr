@@ -34,7 +34,7 @@ function App() {
     setRepoData(repoData)  
 
     // usage from https://javascript.info/async-await
-    await new Promise((resolve, reject) => setTimeout(resolve, 8000))
+    await new Promise((resolve, reject) => setTimeout(resolve, 7500))
 
     saveNewReport(query, repoData.language) // this is whacky .... despite 3 second delay saveNewReport will NOT have updated state variables
   }  

@@ -1,11 +1,22 @@
+/* todo - incorp like an off black to contrast */
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .monkey-img-landing {
     height: 100px;
     width: 100px;
 }
 
 .monkeyhr-logo {
+    font-size: 2rem;
+}
+
+.monkey-zone {
     text-align: left;
-    font-size: 2.5rem;
 }
   
 .github-form input {
@@ -20,9 +31,57 @@
     padding: 20px;
 }
   
-.landing-box {
+.landing-wrapper {
     height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.landing-box ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style-type: none;
+    font-family: "Roboto";
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    margin-top: 40px; /* probably hacky! */
+}
+
+.landing-box ul li {
+    padding-bottom: 6px;
+}
+
+.landing-box .chosen {
+    border-bottom: 3px solid white;
+}
+
+.landing-title {
+    font-family: quantico;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 140px;
+}
+
+/* https://fossheim.io/writing/posts/css-text-gradient/ */
+.landing-title span {
+    background-image: radial-gradient(circle at 0% 50%, #FF1CF7 0%, #00F0FF 100%);
+    display: inline-block;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;    
+    color: transparent;
+}
+
+.landing-subtitle, .landing-subtitle2 {
+    font-family: "Puritan";
+    font-size: 1.3rem;
+    letter-spacing: 1.2px;
+    line-height: 36px;
+}
+
+.landing-subtitle2 {
+    font-weight: bold;
 }
