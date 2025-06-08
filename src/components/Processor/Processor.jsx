@@ -1,5 +1,16 @@
 import './Processor.css'
 
+// main role of Processor:
+// processor should import modules that do the code tests
+// for each test it should get: the flag (red, yellow, green), a results description, a test description, and a test name
+// processor needs to pass the repo url to the modules
+
+import test1 from '../../screeners/commits/Test1';
+import test2 from '../../screeners/commits/Test2';
+import test3 from '../../screeners/commits/Test3';
+import test4 from '../../screeners/commits/Test4';
+import test5 from '../../screeners/commits/Test5';
+
 import { useState, useEffect } from 'react'
 
 const ProcessingScreen = (props) => {
