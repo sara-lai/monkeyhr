@@ -8,11 +8,14 @@ import * as GithubService from '../../services/GithubService'
 
 async function test1(repo){
 
+  console.log("running test1!!", repo)
+
   // for this test need to get Lines of code/LOC (of relevant files), and compare to number of commits
   // using the /compare endpoint, because alternative is fetching every single commit
   // see comments in GithubService.js file
 
   const allCommitsMeta = await GithubService.getCommitsMeta(repo)
+  console.log('here is allCommitsMeta', allCommitsMeta)
   const numCommits = allCommitsMeta.length
 
   let shaFirst = allCommitsMeta[0].sha

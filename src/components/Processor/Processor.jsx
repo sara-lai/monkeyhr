@@ -1,22 +1,70 @@
+// main role of Processor:
+// processor should import the modules that do the code tests/screeners
+// for each test it should get: the flag (red, yellow, green), a results description, and a test description
+// processor updates screen real-time with progress
+// processor builds up reports and saves them / integrated with airtable
+
 import './Processor.css'
 
-// hmm it seems like this entire component is outside the typical react-render flow.... ?
+import * as GithubService from '../../services/GithubService' 
+import * as AirtableService from '../../services/AirtableService'
 
-// main role of Processor:
-// processor should import modules that do the code tests
-// for each test it should get: the flag (red, yellow, green), a results description, a test description, and a test name
-// processor needs to pass the repo url to the modules
+import mockReportData from '../../services/mockProcessor.json'
 
+import test1 from '../../screeners/commits/Test1'
+import test2 from '../../screeners/commits/Test2'
+import test3 from '../../screeners/commits/Test3'
+import test4 from '../../screeners/commits/Test4'
+import test5 from '../../screeners/commits/Test5'
 
-import test1 from '../../screeners/commits/Test1';
-import test2 from '../../screeners/commits/Test2';
-import test3 from '../../screeners/commits/Test3';
-import test4 from '../../screeners/commits/Test4';
-import test5 from '../../screeners/commits/Test5';
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router'
 
-import { useState, useEffect } from 'react'
+const Processor = (props) => {
 
-const ProcessingScreen = (props) => {
+    const [projectType, setProjectType] = useState('')
+    const [repoData, setRepoData] = useState({})
+    const [newReportData, setNewReportData] = useState({})
+
+    const navigate = useNavigate()
+
+    const projectTypeRef = useRef(null) // per Waihon useRef solution to access state vars in various runProcessor() functions
+
+    async function initializeNewReport(){
+        // logic formerly from app.js
+        let repoData = await GithubService.getRepoBasics(props.repoURL)
+        setProjectType(repoData.language)
+        projectTypeRef.current = repoData.language // part of useRef solution to access state vars in later runProcessor() functions
+        setRepoData(repoData)          
+    }
+
+    async function executeSteps(){
+        let resultTest1 = await test1(props.repoURL)
+        // let resultTest2 = await test2(props.repoURL)
+        // let resultTest3 = await test3(props.repoURL)
+        
+        await new Promise((resolve, reject) => setTimeout(resolve, 7000))  // usage from https://javascript.info/async-await
+    }
+
+    async function saveNewReport(){
+        // check if this even works given the "stale closure" issue with state variables
+        console.log('on SaveNewReport: ', projectTypeRef.current)
+        const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, mockReportData)
+
+        setNewReportData(reportData)
+    }
+
+    async function runProcessor(){
+        await initializeNewReport()
+        await executeSteps() 
+        await saveNewReport()
+        navigate("/dashboard")
+    }
+
+    // note: moving to standalone function so can run async
+    useEffect(() => {
+        runProcessor()      
+    }, []) 
 
     function formatDate(date_raw){
         const date = new Date(date_raw);
@@ -47,7 +95,7 @@ const ProcessingScreen = (props) => {
     return (
         <div className="processing-wrapper">
             <h2>{props.repoURL}</h2>
-            <p>Project type: {props.repoData.language}, Created: {formatDate(props.repoData.created_at)}</p>
+            <p>Project type: {repoData.language}, Created: {formatDate(repoData.created_at)}</p>
             <p className={activeStage === 'commits' ? 'active' : ''}>Reviewing commits</p>
             <p className={activeStage === 'iteration' ? 'active' : ''}>Reviewing iteration</p>
             <p className={activeStage === 'code-choices' ? 'active' : ''}>Reviewing code choices</p>
@@ -61,4 +109,4 @@ const ProcessingScreen = (props) => {
 
 }
 
-export default ProcessingScreen
+export default Processor

@@ -92,7 +92,6 @@ const getCommitsFull =  async (ownerRepo, sha) => {
 export {
     getRepoBasics,
     getCommitsMeta,
-    getLinesOfCodes,
     compareCommits,
     getCommitsFull,
 }
