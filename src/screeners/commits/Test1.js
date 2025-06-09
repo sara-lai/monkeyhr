@@ -10,7 +10,6 @@ import * as GithubService from '../../services/GithubService'
 
 function test1(repo){
 
-
   return {
     'testName': 'test1',
     'testDescription': 'number of commits relative to size of codebase',

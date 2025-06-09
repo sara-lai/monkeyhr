@@ -13,7 +13,7 @@ function test4(repo){
 
   return {
     'testName': 'test4',
-    'testDescription': 'delete-and-copy from AI',
+    'testDescription': 'delete-and-copy from AI signature',
     'resultFlag': '',
     'resultDescription': '',
   }

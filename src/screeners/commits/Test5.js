@@ -13,7 +13,7 @@ function test5(repo){
 
   return {
     'testName': 'test5',
-    'testDescription': 'commit text overly literal',
+    'testDescription': 'commit text excessively literal',
     'resultFlag': '',
     'resultDescription': '',
   }

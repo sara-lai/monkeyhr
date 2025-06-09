@@ -13,7 +13,7 @@ function test3(repo){
 
   return {
     'testName': 'test3',
-    'testDescription': 'lopsided pattern of commits',
+    'testDescription': 'lopsided commit size pattern',
     'resultFlag': '',
     'resultDescription': '',
   }

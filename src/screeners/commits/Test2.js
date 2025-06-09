@@ -13,7 +13,7 @@ function test2(repo){
 
   return {
     'testName': 'test2',
-    'testDescription': 'large additions short time period',
+    'testDescription': 'very large additions short time period',
     'resultFlag': '',
     'resultDescription': '',
   }
