@@ -1,18 +1,12 @@
 import * as GithubService from '../../services/GithubService'
 
-// needs: the test ai gen repo(s) made for this test
+// todo - reference my test ai generated repo app made exclusively for this test
 
-// needs to return:
-// test name
-// test description
-// result flag
-// result description
 
 function test2(repo){
 
 
   return {
-    'testName': 'test2',
     'testDescription': 'very large additions short time period',
     'resultFlag': '',
     'resultDescription': '',

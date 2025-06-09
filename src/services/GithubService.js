@@ -14,24 +14,28 @@ const getRepoBasics = async (ownerRepo) => { // input as "owner/repoName"
     }
 }
 
-const getLinesOfCodes = async (ownerRepo) => {
+// new: maybe just calculate this in the individual tests
+// const getLinesOfCodes = async (ownerRepo) => {
 
-    // not so easy! 
-    // need compareCommits(first, last)
-    // iterate the files and total the stats
-    // OR.... 
-    // get each commit with separate API call and run calculations
+//     const commitMetaData = await getCommitsMeta(ownerRepo)
+//     const numCommits = 
 
-    try {
-        const response = await fetch(BASE_URL + '/repos/' + ownerRepo)
-        const data = await response.json()
-        return data
-    } catch(err) {
-        console.log(err)
-    }    
-}
+//     // not so easy! 
+//     // need compareCommits(first, last)
+//     // iterate the files and total the stats
+//     // OR.... 
+//     // get each commit with separate API call and run calculations
 
-const compareCommits = async (repoUrl, shaFirst, shaLast) => {
+//     try {
+//         const response = await fetch(BASE_URL + '/repos/' + ownerRepo)
+//         const data = await response.json()
+//         return data
+//     } catch(err) {
+//         console.log(err)
+//     }    
+// }
+
+const compareCommits = async (ownerRepo, shaFirst, shaLast) => {
     // compare: GET /repos/{owner}/{repo}/compare/{first}...{last}
     // see services/sample-compare-response-githubapi.json
     // will give a list of files, { files: [ filename: 'app.js', "additions": 927, "deletions": 71, "changes": 998,] }
@@ -49,6 +53,7 @@ const getCommitsMeta =  async (ownerRepo) => {
     // todo, need to update logic for more than 100 commits
     // commit messages: [{"commit": { "message": "my commit message"}, ]
     // date created: [{"commit": {"author": {"date": "2025-05-10T06:54:44Z"}}}]
+    // number of commits: data.length
     try {
         const response = await fetch(BASE_URL + '/repos/' + ownerRepo + '/commits?per_page=100') // show as many as can in 1 api call
         const data = await response.json()

@@ -1,9 +1,12 @@
 import './Processor.css'
 
+// hmm it seems like this entire component is outside the typical react-render flow.... ?
+
 // main role of Processor:
 // processor should import modules that do the code tests
 // for each test it should get: the flag (red, yellow, green), a results description, a test description, and a test name
 // processor needs to pass the repo url to the modules
+
 
 import test1 from '../../screeners/commits/Test1';
 import test2 from '../../screeners/commits/Test2';
@@ -24,18 +27,16 @@ const ProcessingScreen = (props) => {
     // goal: walk through the steps 1-by-1 at some interval ....setInterval.... 
     // goal2: show a "." after each test next to the category, have those also put on page
     // react: setInterval is a side effect, so use useEffect.... 
-    // todo - probably need to clear the setIntervals
     const [activeStage, setActiveStage] = useState('')
     const stages = ['commits', 'iteration', 'code-choices', 'code-style', 'artefacts', 'ai-assessment', 'mitigation']
     useEffect(() => {
         let stageIdx = 0
-        const interval = setInterval(() => { // do i need to clearInterval later?
+        const interval = setInterval(() => {
             setActiveStage(stages[stageIdx])
             stageIdx++
         }, 1200)
     }, [])
 
-    // a second useEffect + setInterval that contorls the "dots" ? 
     const [dots, setDots] = useState('')
     useEffect(() => {
         const interval = setInterval(() => {
