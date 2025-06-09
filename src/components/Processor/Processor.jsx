@@ -22,35 +22,63 @@ import { useNavigate } from 'react-router'
 
 const Processor = (props) => {
 
+    // todo - possible refactor: possibly dont use stateVariables/ or useRef.... just plain variables....
+    // possible refactor: separate the UI rendering/updating component from the processor logic 
+
     const [projectType, setProjectType] = useState('')
     const [repoData, setRepoData] = useState({})
     const [newReportData, setNewReportData] = useState({})
 
     const navigate = useNavigate()
 
-    const projectTypeRef = useRef(null) // per Waihon useRef solution to access state vars in various runProcessor() functions
+    // per Waihon useRef solution to access state vars in various runProcessor() functions
+    const projectTypeRef = useRef(null) 
+    const newReportDataRef = useRef(null)
+    // todo - could maybe just use regular variables? Or risk getting wiped out on re-renders?
 
     async function initializeNewReport(){
         // logic formerly from app.js
         let repoData = await GithubService.getRepoBasics(props.repoURL)
         setProjectType(repoData.language)
-        projectTypeRef.current = repoData.language // part of useRef solution to access state vars in later runProcessor() functions
+        projectTypeRef.current = repoData.language // part of useRef solution
         setRepoData(repoData)          
     }
 
     async function executeSteps(){
+        // tests 1-5 are commit related
         let resultTest1 = await test1(props.repoURL)
         console.log('results of test1: ', resultTest1)
+
         // let resultTest2 = await test2(props.repoURL)
         // let resultTest3 = await test3(props.repoURL)
+        // let resultTest4 = await test4(props.repoURL)
+        // let resultTest5 = await test5(props.repoURL)
+        let commitTestResults = [resultTest1] //resultTest2, resultTest3, resultTest4]
+        setNewReportData({...newReportData, "commits": commitTestResults }) // is there any point to this if using newReportDataRef.current ?
+        newReportDataRef.current = {...newReportData, "commits": commitTestResults } // part of useRef solution
         
         await new Promise((resolve, reject) => setTimeout(resolve, 7000))  // usage from https://javascript.info/async-await
     }
 
     async function saveNewReport(){
-        const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, mockReportData) // useRef solution
+        // first: add the mockdata for tests that haven't been implemented
+        newReportDataRef.current.commits = newReportDataRef.current.commits.concat(mockReportData.commits) // combine arrays
+        // could loop, but simpler written out
+        newReportDataRef.current.iteration = mockReportData.iteration 
+        newReportDataRef.current["code-choices"] = mockReportData["code-choices"]
+        newReportDataRef.current["code-style"] = mockReportData["code-style"]
+        newReportDataRef.current.artefacts = mockReportData.artefacts
+        newReportDataRef.current.comments = mockReportData.comments
+        newReportDataRef.current['ai-assessments'] = mockReportData['ai-assessments']
+        newReportDataRef.current.mitigation = mockReportData.mitigation
 
-        setNewReportData(reportData)
+        console.log("wonderful frankenstein report data: ", newReportDataRef.current)
+
+        const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, newReportDataRef.current)
+
+        console.log('done processing! saved report id: ', reportData)
+
+        setNewReportData(reportData) // necessary??
     }
 
     async function runProcessor(){

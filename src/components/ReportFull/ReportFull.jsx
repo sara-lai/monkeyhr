@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 
 import * as AirtableService from '../../services/AirtableService'
 
+import FlagIcon from '@mui/icons-material/Flag';
+
 // todo - a GET to airtable may be more appropriate than passing allReports and filtering by id.
 
 const ReportFull = (props) => {
@@ -28,8 +30,8 @@ const ReportFull = (props) => {
                     <div className='tests-set'>
                         {report[category].map(test => (
                             <div className='test-block'>
-                                <p>{test.description}</p>
-                                <p>result: flag-icon</p>
+                                <p>{test.testDescription}</p>
+                                <FlagIcon sx={{ color: test.resultFlag, p: .5 }} /> 
                             </div>
                         ))}
                     </div>

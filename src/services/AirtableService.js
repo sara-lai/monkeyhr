@@ -10,7 +10,6 @@ const getReport = async (reportId) => {
             }
         })
         const data = await res.json()
-        console.log('the report', data)    
         return data  
     } catch (err) {
         console.log(err)

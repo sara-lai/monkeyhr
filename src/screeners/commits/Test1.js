@@ -20,7 +20,6 @@ async function test1(repo){
   // todo - using file.changes (but can use file.additions, or others??).... may be approximate only
   // todo - hone in on app.js main.js, eg only js files, exclude frameworks
   let allChangedFiles = await GithubService.compareCommits(repo, shaFirst, shaLast)
-  console.log('all changed files: ', allChangedFiles)
   let totalChanges = 0
   for (let file of allChangedFiles) {
     totalChanges += file.changes
@@ -32,6 +31,8 @@ async function test1(repo){
     flag = 'red'
   } else if (totalChanges <= 1000 && numCommits <= 10){
     flag = 'red'
+  } else if (totalChanges <= 3000 && numCommits <= 20){
+    flag = 'red'    
   } else if (totalChanges <= 5000 && numCommits <= 30 ){
     flag = 'red'
   } else if (totalChanges > 5000 && numCommits <= 30) {
