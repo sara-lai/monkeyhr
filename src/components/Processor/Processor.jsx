@@ -40,6 +40,7 @@ const Processor = (props) => {
 
     async function executeSteps(){
         let resultTest1 = await test1(props.repoURL)
+        console.log('results of test1: ', resultTest1)
         // let resultTest2 = await test2(props.repoURL)
         // let resultTest3 = await test3(props.repoURL)
         
@@ -47,9 +48,7 @@ const Processor = (props) => {
     }
 
     async function saveNewReport(){
-        // check if this even works given the "stale closure" issue with state variables
-        console.log('on SaveNewReport: ', projectTypeRef.current)
-        const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, mockReportData)
+        const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, mockReportData) // useRef solution
 
         setNewReportData(reportData)
     }
@@ -106,7 +105,6 @@ const Processor = (props) => {
             <div className='dot-zone'>{dots}</div>
         </div>
     )
-
 }
 
 export default Processor

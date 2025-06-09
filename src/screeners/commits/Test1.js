@@ -7,23 +7,20 @@ import * as GithubService from '../../services/GithubService'
 // todo - reference my test ai generated repo app made exclusively for this test
 
 async function test1(repo){
-
-  console.log("running test1!!", repo)
-
   // for this test need to get Lines of code/LOC (of relevant files), and compare to number of commits
   // using the /compare endpoint, because alternative is fetching every single commit
   // see comments in GithubService.js file
 
   const allCommitsMeta = await GithubService.getCommitsMeta(repo)
-  console.log('here is allCommitsMeta', allCommitsMeta)
   const numCommits = allCommitsMeta.length
 
-  let shaFirst = allCommitsMeta[0].sha
-  let shaLast = allCommitsMeta[allCommitsMeta.length - 1].sha
+  let shaLast = allCommitsMeta[0].sha
+  let shaFirst = allCommitsMeta[allCommitsMeta.length - 1].sha
 
   // todo - using file.changes (but can use file.additions, or others??).... may be approximate only
   // todo - hone in on app.js main.js, eg only js files, exclude frameworks
   let allChangedFiles = await GithubService.compareCommits(repo, shaFirst, shaLast)
+  console.log('all changed files: ', allChangedFiles)
   let totalChanges = 0
   for (let file of allChangedFiles) {
     totalChanges += file.changes

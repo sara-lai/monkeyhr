@@ -4,7 +4,6 @@ const BASE_URL = 'https://api.airtable.com/v0/appw87dXqaC1qljNj/tblJt2K6UNrTM5K4
 
 const getReport = async (reportId) => {
     try {
-        console.log("get report id: ", reportId)
         const res = await fetch(BASE_URL + '/' + reportId, {
             headers: {
                 'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
@@ -21,7 +20,6 @@ const getReport = async (reportId) => {
 // probably no reason to use this in final version
 const getAllReports = async () => {
     try {
-        console.log("attempt getAllReports!")
         const res = await fetch(BASE_URL, {
             headers: {
                 'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
@@ -36,7 +34,6 @@ const getAllReports = async () => {
 
 const createReport = async (repoURL, projectType, reportData) => { 
     // copying from GA example
-    console.log('yes i am here', repoURL)
     try {
         const res = await fetch(BASE_URL, {
           method: 'POST',
@@ -53,7 +50,6 @@ const createReport = async (repoURL, projectType, reportData) => {
           })
         })
         const data = await res.json()
-        console.log('data from Airtable create', data)
         return data
     } catch (err) {
         console.log(err)

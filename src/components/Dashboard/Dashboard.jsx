@@ -74,8 +74,6 @@ const Dashboard = () => {
       getAllReports()
     }, [])
 
-    console.log('here', allReports)
-
     return (
       <div className='dashboard-wrapper'>
         <div className='new-report-section'>
