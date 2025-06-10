@@ -1,16 +1,19 @@
+import './report.css'
+
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router';
+import { useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import * as AirtableService from '../../services/AirtableService'
 
 import FlagIcon from '@mui/icons-material/Flag';
 
-// todo - a GET to airtable may be more appropriate than passing allReports and filtering by id.
-
 const ReportFull = (props) => {
 
     const { reportId } = useParams() // see pokemon lab
     const [report, setReport] = useState({})
+
+    const navigate = useNavigate()
 
     // GET to airtable (vs. allReports/filtering - see graveyard)
     async function getReport() {
@@ -22,22 +25,36 @@ const ReportFull = (props) => {
         getReport()
     }, [])
 
+    async function deleteReport(){
+        const report = await AirtableService.deleteReport(reportId) // dont really need to do anything else with response?
+        navigate('/dashboard')
+    }
+
     return (
-        <>
-            {Object.keys(report).map(category => (
-                <div className='category-set'>
-                    <h3>{category}</h3>
-                    <div className='tests-set'>
-                        {report[category].map(test => (
-                            <div className='test-block'>
-                                <p>{test.testDescription}</p>
-                                <FlagIcon sx={{ color: test.resultFlag, p: .5 }} /> 
-                            </div>
-                        ))}
-                    </div>
+        <div className='report-wrapper'>
+            <div className='report-container'>
+                <div className='sidebar'>
+                    <button onClick={deleteReport}>Delete Report</button>
+                    <button>Edit Report</button>
+                    <button>Download</button>
                 </div>
-            ))}
-        </>
+                <div className='the-report'>
+                    {Object.keys(report).map(category => (
+                        <div className='category-set'>
+                            <h3>{category}</h3>
+                            <div className='tests-set'>
+                                {report[category].map(test => (
+                                    <div className='test-block'>
+                                        <p>{test.testDescription}</p>
+                                        <FlagIcon sx={{ color: test.resultFlag, p: .5 }} /> 
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>                
+            </div>
+        </div>
     )
 }
 

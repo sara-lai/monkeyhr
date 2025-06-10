@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router'
 const Processor = (props) => {
 
     // todo - possible refactor: possibly dont use stateVariables/ or useRef.... just plain variables....
-    // possible refactor: separate the UI rendering/updating component from the processor logic u
+    // possible refactor: separate the UI rendering/updating component from the processor logic 
 
     const [projectType, setProjectType] = useState('')
     const [repoData, setRepoData] = useState({})

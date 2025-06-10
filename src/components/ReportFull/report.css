@@ -1,0 +1,29 @@
+/* very cool way to override the fixed width/centering just for the Report page */
+#root:has(.report-wrapper) {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+.report-container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 240px;
+    border-right: 2px solid rgba(255, 255, 255, 0.128);
+    padding: 20px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.sidebar button {
+    margin-bottom: 20px;
+}
+
+.the-report {
+    flex: 1; /* nice, way to fill the remaining space when left is fixed width. */
+}

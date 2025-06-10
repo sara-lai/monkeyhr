@@ -59,8 +59,20 @@ const updateReport = () => {
     console.log('udpate report...')
 }
 
-const deleteReport = () => {
-    console.log('deleting report...')
+const deleteReport = async (reportId) => {
+    // airtable will return { "deleted": true, "id": "recordId" }
+    try {
+        const res = await fetch(BASE_URL + '/' + reportId, {
+            method: 'Delete',
+            headers: {
+                'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
+            }
+        })
+        const data = await res.json()
+        return data  
+    } catch (err) {
+        console.log(err)
+    }     
 }
 
 // todo, version when tie to candidate
