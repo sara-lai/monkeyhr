@@ -14,7 +14,7 @@ async function test8(repo, createdAt){
 
   let theDate = new Date(createdAt)
   let theYear = theDate.getFullYear()
-  let resultFlag = 'red'
+  let resultFlag = 'yellow'
   let resultDescription = `Codebase created in ${theYear}, which is during the era of AI app building.`
   if (theYear < 2023){
     resultFlag = 'green'

@@ -63,10 +63,21 @@ const getCommitsMeta =  async (ownerRepo) => {
     }
 }
 
-const getCommitsFull =  async (ownerRepo, sha) => {
+const getCommit = async (ownerRepo, sha) => {
+    // stats meta: { "stats": { "total": 400, "additions": 400, "deletions": 0} }
+    try {
+        const response = await fetch(BASE_URL + '/repos/' + ownerRepo + '/commits/' + sha)
+        const data = await response.json()
+        return data
+    } catch(err) {
+        console.log(err)
+    }
+} 
+
+const getCommitsFull =  async (ownerRepo) => {
     // danger: this is an API call for every commit!!! 
     // only way to get stats
-    // stats meta: { "stats": "total": 400, "additions": 400, "deletions": 0}
+    // stats meta: { "stats": { "total": 400, "additions": 400, "deletions": 0} }
     // stats per file: {"files": ["filename": "app.js", "additions": 113, "deletions": 0, "changes": 113]}
     // date create: {"commit": {"author": {"date": "2025-05-10T06:54:44Z"}}}
     // message: {"commit": { "message": "my commit message"}
@@ -78,7 +89,8 @@ const getCommitsFull =  async (ownerRepo, sha) => {
 
     // need to wrap this in a loop, loop over each commit sha
     const allCommits = await getCommitsMeta(ownerRepo)
-    // .... todo
+    // .... todo, loop
+    sha = '123'
 
     try {
         const response = await fetch(BASE_URL + '/repos/' + ownerRepo + '/commits/' + sha)
@@ -94,4 +106,5 @@ export {
     getCommitsMeta,
     compareCommits,
     getCommitsFull,
+    getCommit
 }

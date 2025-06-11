@@ -1,7 +1,7 @@
 import * as GithubService from '../../services/GithubService'
 
-// green flag test -> sara-lai/sg-knowledge-challenge
-// red flag test -> 
+// test green flag -> sara-lai/sg-knowledge-challenge
+// test red flag -> sara-l-ai/commits-to-code-ratio
 
 // limitations: 
 // does not account for various project types or framework usage (it assumes simple vanilla JS)
