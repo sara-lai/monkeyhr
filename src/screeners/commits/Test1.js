@@ -1,4 +1,4 @@
-import * as GithubService from '../../services/GithubService'
+import * as GithubService from '../../services/GithubService.js'
 
 // test green flag -> sara-lai/sg-knowledge-challenge
 // test red flag -> sara-l-ai/commits-to-code-ratio
