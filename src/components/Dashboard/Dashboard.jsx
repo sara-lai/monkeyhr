@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import * as AirtableService from '../../services/AirtableService'
 import ReportFull from '../ReportFull/ReportFull';
@@ -64,6 +64,8 @@ const Dashboard = () => {
 
     const [allReports, setAllReports] = useState([])
 
+    const navigate = useNavigate()
+
     async function getAllReports() {
       const reports = await AirtableService.getAllReports()
       setAllReports(reports)
@@ -76,6 +78,7 @@ const Dashboard = () => {
 
     return (
       <div className='dashboard-wrapper'>
+        <img src='images/monkey.png' className='logo-home' onClick={() => navigate('/')} />
         <div className='new-report-section'>
           <h3>Latest Report</h3>
           <LatestReportSummary />

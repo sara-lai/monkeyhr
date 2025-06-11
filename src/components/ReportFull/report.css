@@ -3,6 +3,8 @@
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    font-family: "Roboto";
+    letter-spacing: 1.4px;
   }
 
 .report-container {
@@ -26,4 +28,24 @@
 
 .the-report {
     flex: 1; /* nice, way to fill the remaining space when left is fixed width. */
+}
+
+.category-set h2 {
+    text-align: left;
+    margin-left: 80px;
+}
+
+.test-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+    gap: 10px;
+}
+
+.editing-done {
+    position: absolute;
+    right: 3%;
+    top: 5%;
 }

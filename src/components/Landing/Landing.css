@@ -6,9 +6,13 @@
     justify-content: space-between;
 }
 
-.monkey-img-landing {
-    height: 100px;
-    width: 100px;
+.top-bar button {
+    height: 60px;
+}
+
+.monkey-procession-img {
+    height: 130px;
+    width: 260px;
 }
 
 .monkeyhr-logo {
@@ -84,4 +88,11 @@
 
 .landing-subtitle2 {
     font-weight: bold;
+}
+
+.ai-support {
+    margin-top: 100px;
+}
+.ai-support img {
+    height: 70px;
 }

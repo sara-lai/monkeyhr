@@ -55,8 +55,26 @@ const createReport = async (repoURL, projectType, reportData) => {
     }
 }
 
-const updateReport = () => {
-    console.log('udpate report...')
+const updateReport = async (reportId, reportData) => {
+    // override the full reportData field entry each time
+    try {
+        const res = await fetch(BASE_URL + '/' + reportId, {
+            method: 'PATCH', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${import.meta.env.VITE_AIRTABLE_TOKEN}`
+            },
+            body: JSON.stringify({
+                'fields': {
+                    'ReportData': JSON.stringify(reportData),
+                }
+              })            
+        })
+        const data = await res.json()
+        return data  
+    } catch (err) {
+        console.log(err)
+    }  
 }
 
 const deleteReport = async (reportId) => {

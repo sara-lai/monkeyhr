@@ -5,6 +5,7 @@
     gap: 20px;
     font-family: Roboto;
     letter-spacing: 1.5px;
+    padding-top: 40px;
 }
 
 .new-report-section {
@@ -42,4 +43,12 @@
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+.logo-home {
+    position: absolute;
+    height: 60px;
+    top: 20px;
+    left: 30px;    
+    cursor: pointer;
 }

@@ -1,14 +1,20 @@
+import { useNavigate } from 'react-router'
+
 import GithubForm from "../GithubForm/GithubForm"
 
 import './Landing.css'
 
 const Landing = (props) => {
+
+    const navigate = useNavigate()
     
     return (
         <div className='landing-wrapper'>    
             
             <div className='top-bar'>
                 <h1 className='monkeyhr-logo'>MonkeyHR</h1>
+                <button onClick={() => navigate('/dashboard')}>dashboard</button>
+
             </div>
             <div className='landing-box'>
                 <div className='landing-title'>
@@ -30,10 +36,11 @@ const Landing = (props) => {
                 </ul>                     
             </div>
             <GithubForm handleFormSubmit={props.handleFormSubmit} />
+            <div className='ai-support'>
+                <img src='images/ai-support.png' />
+            </div>
             <div className='monkey-zone'>
-                <img className='monkey-img-landing' src='images/monkey.png' />
-                <img className='monkey-img-landing' src='images/monkey.png' />
-                <img className='monkey-img-landing' src='images/monkey.png' />
+                <img className='monkey-procession-img' src='images/monkey-procession.png' />
             </div>  
         </div>       
     )

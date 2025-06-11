@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router'
 
 import * as AirtableService from '../../services/AirtableService'
 
-import FlagIcon from '@mui/icons-material/Flag';
+import FlagIcon from '@mui/icons-material/Flag'
+import CloseIcon from "@mui/icons-material/Close"
 
 const ReportFull = (props) => {
 
     const { reportId } = useParams() // see pokemon lab
     const [report, setReport] = useState({})
+    const [updating, setUpdating] = useState(false)
 
     const navigate = useNavigate()
 
@@ -30,23 +32,42 @@ const ReportFull = (props) => {
         navigate('/dashboard')
     }
 
+    async function updateReport(){
+        // tricky, this needs to iterate the report obj and remove the clicked test 
+        // how should identify the right test from the CloseIcon event?
+        let reportDataNew = {}
+        const updatedReport = await AirtableService.updateReport(reportId, reportDataNew)
+        setReport(updatedReport)
+    }
+
     return (
         <div className='report-wrapper'>
             <div className='report-container'>
                 <div className='sidebar'>
+                    <button onClick={() => navigate('/dashboard')}>Dashboard</button>
                     <button onClick={deleteReport}>Delete Report</button>
-                    <button>Edit Report</button>
+                    <button onClick={() => setUpdating(true)}>Edit Report</button>
                     <button>Download</button>
                 </div>
                 <div className='the-report'>
+                    {updating && <button className='editing-done' onClick={() => setUpdating(false)}>
+                        Done
+                    </button>}
                     {Object.keys(report).map(category => (
                         <div className='category-set'>
-                            <h3>{category}</h3>
+                            <h2>{category}</h2>
                             <div className='tests-set'>
-                                {report[category].map(test => (
+                                {report[category].map(test => (                                                                            
                                     <div className='test-block'>
-                                        <p>{test.testDescription}</p>
-                                        <FlagIcon sx={{ color: test.resultFlag, p: .5 }} /> 
+                                        {updating && <CloseIcon  
+                                            sx={{ cursor: "pointer", position: "absolute", right: "5%", top: "40%", fontSize: "1.5rem" }} 
+                                            onClick={updateReport} 
+                                        />}
+                                        <div className='test-info'>
+                                            <p>{test.testDescription}</p>
+                                            <p>{test.resultDescription}</p>
+                                        </div>
+                                        <FlagIcon sx={{ color: test.resultFlag, p: .5, fontSize: "2rem" }} />
                                     </div>
                                 ))}
                             </div>
