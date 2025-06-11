@@ -22,7 +22,7 @@ async function test8(repo, createdAt){
   }
 
   return {
-    'testDescription': 'codebase created pre AI',
+    'testDescription': 'Codebase created pre AI',
     'resultFlag': resultFlag,
     'resultDescription': resultDescription,
     'id': 8,

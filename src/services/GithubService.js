@@ -48,7 +48,7 @@ const compareCommits = async (ownerRepo, shaFirst, shaLast) => {
     }     
 }
 
-const getCommitsMeta =  async (ownerRepo) => {
+const getCommitsMeta = async (ownerRepo) => {
     // note: this does not give stats --> need to individually call commits
     // todo, need to update logic for more than 100 commits
     // commit messages: [{"commit": { "message": "my commit message"}, ]
@@ -75,6 +75,8 @@ const getCommit = async (ownerRepo, sha) => {
 } 
 
 const getCommitsFull =  async (ownerRepo) => {
+    // todo 
+    
     // danger: this is an API call for every commit!!! 
     // only way to get stats
     // stats meta: { "stats": { "total": 400, "additions": 400, "deletions": 0} }
