@@ -43,6 +43,7 @@ async function test1(repo){
     'testDescription': 'Assess number of commits relative to the size of the codebase.',
     'resultFlag': flag,
     'resultDescription': `Number commits: ${numCommits}, size of codebase: ${totalChanges}.`,
+    'id': 1
   }
 }
 

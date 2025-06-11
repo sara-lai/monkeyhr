@@ -29,10 +29,10 @@ const LatestReportSummary = () => {
     <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 4, minHeight: 300 }}>
       <div className='categories-flags'>
         {reportStats.map((category) => (
-          <div className='category-flag-set'>
+          <div className='category-flag-set' key={category.id}>
             <span>{category.display}</span>
             <div className='flags-row'>
-              {category.flags.map(flag => (
+              {category.flags.map((flag, index) => (
                 <FlagIcon sx={{ color: flagColorKeys[flag], p: .5 }} /> 
               ))}    
             </div>        

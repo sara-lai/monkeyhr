@@ -32,12 +32,14 @@ const ReportFull = (props) => {
         navigate('/dashboard')
     }
 
-    async function updateReport(){
+    async function updateReport(category, testId){
         // tricky, this needs to iterate the report obj and remove the clicked test 
-        // how should identify the right test from the CloseIcon event?
-        let reportDataNew = {}
-        const updatedReport = await AirtableService.updateReport(reportId, reportDataNew)
-        setReport(updatedReport)
+        let reportDataNew = structuredClone(report)
+        reportDataNew[category] = reportDataNew[category].filter(test => test.id !== testId) // filter+update a test in a category key
+
+        setReport(reportDataNew) // putting this before the API call so get immediate UI response
+
+        await AirtableService.updateReport(reportId, reportDataNew)
     }
 
     return (
@@ -54,14 +56,14 @@ const ReportFull = (props) => {
                         Done
                     </button>}
                     {Object.keys(report).map(category => (
-                        <div className='category-set'>
+                        <div className='category-set' key={category}>
                             <h2>{category}</h2>
                             <div className='tests-set'>
                                 {report[category].map(test => (                                                                            
-                                    <div className='test-block'>
+                                    <div className='test-block' key={test.id}>
                                         {updating && <CloseIcon  
                                             sx={{ cursor: "pointer", position: "absolute", right: "5%", top: "40%", fontSize: "1.5rem" }} 
-                                            onClick={updateReport} 
+                                            onClick={() => updateReport(category, test.id)} 
                                         />}
                                         <div className='test-info'>
                                             <p>{test.testDescription}</p>
