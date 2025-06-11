@@ -1,8 +1,7 @@
-// main role of Processor:
-// processor should import the modules that do the code tests/screeners
-// for each test it should get: the flag (red, yellow, green), a results description, and a test description
-// processor updates screen real-time with progress
-// processor builds up reports and saves them / integrated with airtable
+// role of Processor:
+// import modules that do the code tests, run them
+// update the screen real-time with progress
+// build up reports and save them on airtable
 
 import './Processor.css'
 
@@ -11,11 +10,17 @@ import * as AirtableService from '../../services/AirtableService'
 
 import mockReportData from '../../services/mockProcessor.json'
 
+// commits
 import test1 from '../../screeners/commits/Test1'
 import test2 from '../../screeners/commits/Test2'
 import test3 from '../../screeners/commits/Test3'
 import test4 from '../../screeners/commits/Test4'
 import test5 from '../../screeners/commits/Test5'
+import test6 from '../../screeners/commits/Test6'
+import test7 from '../../screeners/commits/Test7'
+
+// mitigation
+import test8 from '../../screeners/mitigation/Test8'
 
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
@@ -33,35 +38,42 @@ const Processor = (props) => {
 
     // per Waihon useRef solution to access state vars in various runProcessor() functions
     const projectTypeRef = useRef(null) 
+    const createdAtRef = useRef(null)
     const newReportDataRef = useRef(null)
-    // todo - could maybe just use regular variables? Or risk getting wiped out on re-renders?
+    // todo - definitely extract all this non-React-like stuff out to plain js and use regular vars
 
     async function initializeNewReport(){
         // logic formerly from app.js
         let repoData = await GithubService.getRepoBasics(props.repoURL)
         setProjectType(repoData.language)
         projectTypeRef.current = repoData.language // part of useRef solution
+        createdAtRef.current = repoData.created_at
         setRepoData(repoData)          
     }
 
     async function executeSteps(){
-        // tests 1-5 are commit related
+        // tests 1-7 are commit related
         let resultTest1 = await test1(props.repoURL)
+        //let resultTest2 = await test2(props.repoURL)
         console.log('results of test1: ', resultTest1)
+        let commitTestResults = [resultTest1]
 
-        // let resultTest2 = await test2(props.repoURL)
-        // let resultTest3 = await test3(props.repoURL)
-        // let resultTest4 = await test4(props.repoURL)
-        // let resultTest5 = await test5(props.repoURL)
-        let commitTestResults = [resultTest1] //resultTest2, resultTest3, resultTest4]
-        setNewReportData({...newReportData, "commits": commitTestResults }) // is there any point to this if using newReportDataRef.current ?
-        newReportDataRef.current = {...newReportData, "commits": commitTestResults } // part of useRef solution
-        
+        // test 8 is the pre-ai mitigation test
+        let resultTest8 = await test8(props.repoURL, createdAtRef.current)
+        console.log('results of test8: ', resultTest8)
+        let mitigationTestResults = [resultTest8]
+
+        // todo - refactor.... part of useRef solution / is there a point to the state variable? 
+        setNewReportData({...newReportData, "mitigation": mitigationTestResults, "commits": commitTestResults})
+        newReportDataRef.current = {...newReportData, "mitigation": mitigationTestResults, "commits": commitTestResults}
+
         await new Promise((resolve, reject) => setTimeout(resolve, 7000))  // usage from https://javascript.info/async-await
     }
 
     async function saveNewReport(){
         // first: add the mockdata for tests that haven't been implemented
+        // report format -> {"category": [{test}, {test}, {test}....], "category2": ....}
+
         newReportDataRef.current.commits = newReportDataRef.current.commits.concat(mockReportData.commits) // combine arrays
         // could loop, but simpler written out
         newReportDataRef.current.iteration = mockReportData.iteration 
@@ -70,13 +82,13 @@ const Processor = (props) => {
         newReportDataRef.current.artefacts = mockReportData.artefacts
         newReportDataRef.current.comments = mockReportData.comments
         newReportDataRef.current['ai-assessments'] = mockReportData['ai-assessments']
-        newReportDataRef.current.mitigation = mockReportData.mitigation
+        newReportDataRef.current.mitigation =  newReportDataRef.current.mitigation.concat(mockReportData.mitigation)
 
         console.log("wonderful frankenstein report data: ", newReportDataRef.current)
 
         const reportData = await AirtableService.createReport(props.repoURL, projectTypeRef.current, newReportDataRef.current)
 
-        console.log('done processing! saved report id: ', reportData)
+        console.log('done processing! saved report id: ', reportData.id)
 
         setNewReportData(reportData) // necessary??
     }

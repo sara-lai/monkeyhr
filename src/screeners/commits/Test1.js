@@ -1,10 +1,11 @@
 import * as GithubService from '../../services/GithubService'
 
+// green flag test -> sara-lai/sg-knowledge-challenge
+// red flag test -> 
+
 // limitations: 
 // does not account for various project types or framework usage (it assumes simple vanilla JS)
 // needs to correctly identify relevant files to check (eg exclude large css copied in)
-
-// todo - reference my test ai generated repo app made exclusively for this test
 
 async function test1(repo){
   // for this test need to get Lines of code/LOC (of relevant files), and compare to number of commits
