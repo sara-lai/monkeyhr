@@ -1,0 +1,350 @@
+{
+    "commits": [
+      {
+        "id": 3,
+        "testDescription": "very large code in < 24 hours",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"
+      },
+      {
+        "id": 50,
+        "testDescription": "one very large commit among small ones",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"
+      },      
+      {
+        "id": 4,
+        "testDescription": "re-copy AI output signatures (very large +/-)",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"
+      },
+      {
+        "id": 5,
+        "testDescription": "commit text overly literal",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"
+      },
+      {
+        "id": 6,
+        "testDescription": "steady pattern w/o wild anomalies",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"
+      }
+    ],
+    "iteration": [
+      {
+        "id": 7,
+        "testDescription": "no iteration on core features",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 8,
+        "name": "",
+        "testDescription": "minimal iteration on core features",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 9,
+        "name": "",
+        "testDescription": "excessive superficial iterations",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 10,
+        "name": "",
+        "testDescription": "at least 1 significant re-write/refactor",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 11,
+        "name": "",
+        "testDescription": "an arc like mvp to polished, an arc that includes progressive versions",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "code-choices": [
+      {
+        "id": 12,
+        "name": "",
+        "testDescription": "overly complex or modularized for simple problems",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 13,
+        "name": "",
+        "testDescription": "silly little functions",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 14,
+        "name": "",
+        "testDescription": "very advanced language features used (more than 1 or 2 flag)",
+        "resultFlag": "yellow",
+        "language-features": ["Promises with async-await", "Currying"],
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 15,
+        "name": "",
+        "testDescription": "overly optimized / overly compact",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 16,
+        "name": "",
+        "testDescription": "over-zealous error checking (try-catch on simple)",
+        "resultFlag": "yellow",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 17,
+        "name": "",
+        "testDescription": "edge case obsession",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "code-style": [
+      {
+        " id": 18,
+        "name": "",
+        "testDescription": "overall consistent style",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+        
+      },
+      {
+        "id": 19,
+        "name": "",
+        "testDescription": "polished section  vs. hacky section combo",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 20,
+        "name": "",
+        "testDescription": "too boilerplate/standardized/no personal choices",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "comments": [
+      {
+        "id": 21,
+        "name": "",
+        "testDescription": "comments overly literal",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 22,
+        "name": "",
+        "testDescription": "comments overly formal",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 23,
+        "name": "",
+        "testDescription": "comments on trivial",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 24,
+        "name": "",
+        "testDescription": "do comments ever change",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 25,
+        "name": "",
+        "testDescription": "comments somewhat personal to the developer [though easiest to fake]",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 26,
+        "name": "",
+        "testDescription": "no comments [and jr/intermed]",
+        "resultFlag": "green",
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 27,
+        "name": "",
+        "testDescription": "CSS/HTML comments especially [maybe overlooked]",
+        "resultFlag": "red",
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "artefacts": [
+      {
+        "id": 28,
+        "name": "",
+        "testDescription": "css/html quirks",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 29,
+        "name": "",
+        "testDescription": "also css; maybe too much !important, or too much specificity",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 30,
+        "name": "",
+        "testDescription": "floating layouts odd",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 31,
+        "name": "",
+        "testDescription": "lang specific stuff: like var/XMLHTTPRequest",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 32,
+        "name": "",
+        "testDescription": "<-- add your content here --> style flags",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 33,
+        "name": "",
+        "testDescription": "class names: item-1, item-2.... generated-component",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 34,
+        "name": "",
+        "testDescription": "decimal point fonts or margins",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 35,
+        "name": "",
+        "testDescription": "listing css properties alphabetically",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 36,
+        "name": "",
+        "testDescription": "lorem ipsum",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "ai-assessments": [
+      {
+        "id": 37,
+        "name": "",
+        "testDescription": "grok",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 38,
+        "name": "",
+        "testDescription": "claude",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 39,
+        "name": "",
+        "testDescription": "chatgbt",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 40,
+        "name": "",
+        "testDescription": "deepseek",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 41,
+        "name": "",
+        "testDescription": "gemini",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 42,
+        "name": "",
+        "testDescription": "llama",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 43,
+        "name": "",
+        "testDescription": "coderabbit ?",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      }
+    ],
+    "mitigation": [
+      {
+        "id": 44,
+        "name": "",
+        "testDescription": "use of citations for AI or other sources",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 45,
+        "name": "",
+        "testDescription": "just moved/organized to new files, shouldnt count massive +/-",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 46,
+        "name": "",
+        "testDescription": "just fixing a bunch of tabbing, shouldn't count massive +/-",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },  
+      {
+        "id": 47,
+        "name": "",
+        "testDescription": "installs dont count towards code count",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 48,
+        "name": "",
+        "testDescription": "see if like only small portion using AI vs substanial portion",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      },
+      {
+        "id": 49,
+        "name": "",
+        "testDescription": "large changes are in more trivial files eg html",
+        "resultFlag": null,
+        "resultDescription": "result description pending"        
+      }                                               
+    ]
+  }
