@@ -9,10 +9,13 @@ import FlagIcon from '@mui/icons-material/Flag';
 
 import './Dashboard.css'
 
-// todo -  currently dashboard is getting all data from airtable, but to get latest report probably needs props!
+// This summary component needs the latest report - probably best way is an airtable request for most recent
+// ^ or take latest from AllReports passed as a prop
+const LatestReportSummary = (props) => {
 
-const LatestReportSummary = () => {
+  console.log('latest summary for: ', props.report?.id)
   
+  // todo - merge this with actual tests (and/or the mockProcessor.json)
   const reportStats = [
     {'id': 'commits', 'display': 'Commits', 'flags': [2,2,2,2,2] },
     {'id': 'iteration', 'display': 'Iteration', 'flags': [1,2,2,1,2] },
@@ -66,8 +69,18 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
 
+    function getLatestReport(){
+      // added sorting to getAllReports, airtable not helping
+      return allReports[0]
+    }
+
     async function getAllReports() {
-      const reports = await AirtableService.getAllReports()
+      // Airtable isn't returning sorted by date, and that's necessary for latestReport
+      let reports = await AirtableService.getAllReports()
+      reports = reports.sort((a, b) => {
+        return new Date(b.createdTime) - new Date(a.createdTime)  //https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
+      })
+
       setAllReports(reports)
     }    
 
@@ -82,7 +95,7 @@ const Dashboard = () => {
         <img src='images/monkey.png' className='logo-home' onClick={() => navigate('/')} />
         <div className='new-report-section'>
           <h3>Latest Report</h3>
-          <LatestReportSummary />
+          <LatestReportSummary report={getLatestReport()} />
         </div>
         <div className='previous-report-section'>
           <h3>All Reports</h3>

@@ -16,7 +16,9 @@
 }
 
 .monkeyhr-logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Inter';
+    font-weight: 900;
 }
 
 .monkey-zone {
