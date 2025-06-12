@@ -25,7 +25,6 @@ const getRepoBasics = async (ownerRepo) => { // input as "owner/repoName"
 //     // iterate the files and total the stats
 //     // OR.... 
 //     // get each commit with separate API call and run calculations
-
 //     try {
 //         const response = await fetch(BASE_URL + '/repos/' + ownerRepo)
 //         const data = await response.json()
