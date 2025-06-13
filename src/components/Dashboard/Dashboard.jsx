@@ -12,8 +12,6 @@ import './Dashboard.css'
 // This summary component needs the latest report - probably best way is an airtable request for most recent
 // ^ or take latest from AllReports passed as a prop
 const LatestReportSummary = (props) => {
-
-  console.log('latest summary for: ', props.report?.id)
   
   // this is new summary mock data (not mockProcessor.json)
   const reportStats = [
@@ -40,8 +38,6 @@ const LatestReportSummary = (props) => {
     
     let mockMitigationStats = reportStats.find(stat => stat.id === 'mitigation')
     mockMitigationStats.flags[0] = test8FlagNum
-
-    console.log('hereeee', mockCommitStats, mockMitigationStats)
   }
 
   const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green', 3: 'white'}

@@ -55,12 +55,10 @@ const Processor = (props) => {
         // tests 1-7 are commit related
         let resultTest1 = await test1(props.repoURL)
         //let resultTest2 = await test2(props.repoURL)
-        console.log('results of test1: ', resultTest1)
         let commitTestResults = [resultTest1]
 
         // test 8 is the pre-ai mitigation test
         let resultTest8 = await test8(props.repoURL, createdAtRef.current)
-        console.log('results of test8: ', resultTest8)
         let mitigationTestResults = [resultTest8]
 
         // todo - refactor.... part of useRef solution / is there a point to the state variable? 
