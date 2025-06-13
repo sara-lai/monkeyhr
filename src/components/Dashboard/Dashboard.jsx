@@ -17,15 +17,16 @@ const LatestReportSummary = (props) => {
   
   // todo - merge this with actual tests (and/or the mockProcessor.json)
   const reportStats = [
-    {'id': 'commits', 'display': 'Commits', 'flags': [2,2,2,2,2] },
+    {'id': 'commits', 'display': 'Commits', 'flags': [1,2,2,2,2,2] },
     {'id': 'iteration', 'display': 'Iteration', 'flags': [1,2,2,1,2] },
     {'id': 'code-choices', 'display': 'Code Choices', 'flags': [2,2,1,2,2,2] },
-    {'id': 'code-style', 'display': 'Code Style', 'flags': [1,2,2] },
-    {'id': 'artefacts', 'display': 'Artefacts', 'flags': [1,2,2,2] },
+    {'id': 'code-style', 'display': 'Code Style', 'flags': [1,1,2,2,2,2] },
+    {'id': 'artefacts', 'display': 'Artefacts', 'flags': [1,1,2,2,2] },
     {'id': 'ai-assessment', 'display': 'AI Assessment', 'flags': [2,2,2,2,2] },
+    {'id': 'mitigation', 'display': 'Mitigation', 'flags': [2,2,2,2,2,2] },
   ]
 
-  const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green'}
+  const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green', 3: 'white'}
 
   // todo - do the <Link-to tag when have latest report
   return (
@@ -69,11 +70,6 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
 
-    function getLatestReport(){
-      // added sorting to getAllReports, airtable not helping
-      return allReports[0]
-    }
-
     async function getAllReports() {
       // Airtable isn't returning sorted by date, and that's necessary for latestReport
       let reports = await AirtableService.getAllReports()
@@ -95,7 +91,7 @@ const Dashboard = () => {
         <img src='images/monkey.png' className='logo-home' onClick={() => navigate('/')} />
         <div className='new-report-section'>
           <h3>Latest Report</h3>
-          <LatestReportSummary report={getLatestReport()} />
+          <LatestReportSummary report={allReports[0]} />
         </div>
         <div className='previous-report-section'>
           <h3>All Reports</h3>

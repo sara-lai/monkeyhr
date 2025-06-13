@@ -7,7 +7,8 @@ import * as GithubService from '../../services/GithubService'
 // ^ then comb through a time window
 // ^ I may need to register an auth token in order to actually test this
 
-
+// need an API call for every commit, assemble all the commits and then do the sliding window
+// no time for demo.
 
 function test2(repo){
 
