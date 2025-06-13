@@ -5,13 +5,7 @@
         "testDescription": "very large code in < 24 hours",
         "resultFlag": "red",
         "resultDescription": "result description pending"
-      },
-      {
-        "id": 50,
-        "testDescription": "one very large commit among small ones",
-        "resultFlag": "red",
-        "resultDescription": "result description pending"
-      },      
+      },     
       {
         "id": 4,
         "testDescription": "re-copy AI output signatures (very large +/-)",

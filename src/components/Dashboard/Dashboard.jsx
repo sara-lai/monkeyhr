@@ -28,13 +28,16 @@ const LatestReportSummary = (props) => {
   if (props.report){
     let latestReportData = JSON.parse(props.report.fields.ReportData) // need to JSON.parse the big reportData field from Airtable!
     let test1Flag = latestReportData.commits[0].resultFlag
+    let test7Flag = latestReportData.commits[1].resultFlag
     let test8Flag = latestReportData.mitigation[0].resultFlag
 
     const flagKeyColors = { 'red': 0, 'yellow': 1, 'green': 2, 'white': 3} 
     let test1FlagNum = flagKeyColors[test1Flag]
+    let test7FlagNum = flagKeyColors[test7Flag]
     let test8FlagNum = flagKeyColors[test8Flag]
     let mockCommitStats = reportStats.find(stat => stat.id === 'commits')
     mockCommitStats.flags[0] = test1FlagNum
+    mockCommitStats.flags[1] = test7FlagNum
     
     let mockMitigationStats = reportStats.find(stat => stat.id === 'mitigation')
     mockMitigationStats.flags[0] = test8FlagNum

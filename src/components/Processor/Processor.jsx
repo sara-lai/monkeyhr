@@ -55,7 +55,8 @@ const Processor = (props) => {
         // tests 1-7 are commit related
         let resultTest1 = await test1(props.repoURL)
         //let resultTest2 = await test2(props.repoURL)
-        let commitTestResults = [resultTest1]
+        let resultTest7 = await test7(props.repoURL)
+        let commitTestResults = [resultTest1, resultTest7]
 
         // test 8 is the pre-ai mitigation test
         let resultTest8 = await test8(props.repoURL, createdAtRef.current)

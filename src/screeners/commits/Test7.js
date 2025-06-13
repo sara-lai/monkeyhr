@@ -35,9 +35,9 @@ async function test7(repo){
       flag = 'red'
       description = 'A blatantly large commit among small ones was found.'
       break
-    } else if (large_section_is_on_left(lo, midpoint-1)) {
+    } else if (await large_section_is_on_left(lo, midpoint-1)) {
       hi = midpoint
-    } else if (large_section_is_on_right(midpoint+1, hi)) {
+    } else if (await large_section_is_on_right(midpoint+1, hi)) {
       lo = midpoint+1
     } else {
       console.log('something went wrong....')
@@ -50,37 +50,37 @@ async function test7(repo){
     let testCommit = allCommitsMeta[index]
     let response = await GithubService.getCommit(repo, testCommit.sha) // this should still wait despite looping because test7 is async....
     let numChanges = response.stats.additions
-    console.log('numChanges', numChanges, response.stats)
+    console.log('numChanges', response.stats)
     if (numChanges >= 400){
       return true
     }
-    console.log('returning false then ')
+    console.log('not the mega commit')
     return false
   }
 
-  function large_section_is_on_left(lo, hi){
+  async function large_section_is_on_left(lo, hi){
     console.log('checking left')
-    return compareAndCheckSize(lo, hi)
+    return await compareAndCheckSize(lo, hi)
   }
 
-  function large_section_is_on_right(lo, hi){
+  async function large_section_is_on_right(lo, hi){
     console.log('checking right')
-    return compareAndCheckSize(lo, hi)
+    return await compareAndCheckSize(lo, hi)
   }
   
   async function compareAndCheckSize(lo, hi){
-    shaLast = allCommitsMeta[lo].sha
-    shaFirst = allCommitsMeta[hi].sha
+    let shaLast = allCommitsMeta[lo].sha // represents later commit
+    let shaFirst = allCommitsMeta[hi].sha // represents earlier commit
     let allChangedFiles = await GithubService.compareCommits(repo, shaFirst, shaLast)
-    console.log('compareAndCheckSize', allChangedFiles, lo, hi, shaFirst, shaLast)
     let totalChanges = 0
-      for (let file of allChangedFiles) {
-        totalChanges += file.changes
+    for (let file of allChangedFiles) {
+      totalChanges += file.changes
     }
+    console.log('totalChanges in compare', totalChanges)
     if (totalChanges >= 400) {
       return true
     }
-     return false
+    return false  
   }
 
   return {
