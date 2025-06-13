@@ -22,7 +22,7 @@ async function test7(repo){
   let flag = 'green'
   let description = 'No blatantly large commits found among small ones.'
 
-  // lets go - this is copying primeagen from above lecture, but adapted for the compare API
+  // Copying primeagen from above lecture, but adapted for the compare API
   let lo = 0
   let hi = numCommits
   
@@ -67,7 +67,7 @@ async function test7(repo){
     console.log('checking right')
     return compareAndCheckSize(lo, hi)
   }
-
+  
   async function compareAndCheckSize(lo, hi){
     shaLast = allCommitsMeta[lo].sha
     shaFirst = allCommitsMeta[hi].sha

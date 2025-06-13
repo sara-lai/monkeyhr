@@ -35,6 +35,8 @@ const ReportFull = (props) => {
     async function updateReport(category, testId){
         // tricky, this needs to iterate the report obj and remove the clicked test 
         let reportDataNew = structuredClone(report) // shallow vs deep copying
+
+        // format: {"commmits": [{test1}, {test2}...etc], "iteration": [test3, {test3}...etc] ...etc}
         reportDataNew[category] = reportDataNew[category].filter(test => test.id !== testId) // filter+update a test in a category key
 
         setReport(reportDataNew) // putting this before the API call so get immediate UI response

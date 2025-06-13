@@ -12,14 +12,11 @@ async function test1(repo){
   // using the /compare endpoint, because alternative is fetching every single commit
   // see comments in GithubService.js file
 
-  const allCommitsMeta = await GithubService.getCommitsMeta(repo)
+  const allCommitsMeta = await GithubService.getCommitsMeta(repo) 
   const numCommits = allCommitsMeta.length
-
   let shaLast = allCommitsMeta[0].sha
-  let shaFirst = allCommitsMeta[allCommitsMeta.length - 1].sha
-
+  let shaFirst = allCommitsMeta[numCommits - 1].sha
   // todo - using file.changes (but can use file.additions, or others??).... may be approximate only
-  // todo - hone in on app.js main.js, eg only js files, exclude frameworks
   let allChangedFiles = await GithubService.compareCommits(repo, shaFirst, shaLast)
   let totalChanges = 0
   for (let file of allChangedFiles) {

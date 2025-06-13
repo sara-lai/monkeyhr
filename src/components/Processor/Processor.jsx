@@ -100,9 +100,8 @@ const Processor = (props) => {
         navigate("/dashboard")
     }
 
-    // note: moving to standalone function so can run async
     useEffect(() => {
-        runProcessor()      
+        runProcessor() // note: standalone function so can run as async     
     }, []) 
 
     function formatDate(date_raw){

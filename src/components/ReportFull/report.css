@@ -1,3 +1,5 @@
+
+
 /* very cool way to override the fixed width/centering just for the Report page */
 #root:has(.report-wrapper) {
     max-width: 100% !important;
