@@ -1,3 +1,4 @@
+
 // citation: created with guidance from GPT & https://vercel.com/docs/ai/openai?package-manager=npm
 
 import { openai } from '@ai-sdk/openai'
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
       flag: result.flag,
       summary: result.summary
     })  
-
+    
   } catch (error) {
     console.error('ChatGPT Error:', error)
     res.status(500).json({ error: 'Something went wrong' })

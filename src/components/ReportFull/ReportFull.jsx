@@ -20,7 +20,7 @@ const ReportFull = (props) => {
     // GET to airtable (vs. allReports/filtering - see graveyard)
     async function getReport() {
         const report = await AirtableService.getReport(reportId)
-        const reportDataObj = JSON.parse(report.fields.ReportData)
+        const reportDataObj = JSON.parse(report.fields.ReportData) // Must JSON parse
         setReport(reportDataObj)
     }        
     useEffect(() => {

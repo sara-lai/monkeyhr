@@ -15,7 +15,7 @@ const LatestReportSummary = (props) => {
 
   console.log('latest summary for: ', props.report?.id)
   
-  // todo - merge this with actual tests (and/or the mockProcessor.json)
+  // this is new summary mock data (not mockProcessor.json)
   const reportStats = [
     {'id': 'commits', 'display': 'Commits', 'flags': [1,2,2,2,2,2] },
     {'id': 'iteration', 'display': 'Iteration', 'flags': [1,2,2,1,2] },
@@ -25,6 +25,24 @@ const LatestReportSummary = (props) => {
     {'id': 'ai-assessment', 'display': 'AI Assessment', 'flags': [2,2,2,2,2] },
     {'id': 'mitigation', 'display': 'Mitigation', 'flags': [2,2,2,2,2,2] },
   ]
+
+  // more frankensteining! merge with live test results, only need to do a few
+  if (props.report){
+    let latestReportData = JSON.parse(props.report.fields.ReportData) // need to JSON.parse the big reportData field from Airtable!
+    let test1Flag = latestReportData.commits[0].resultFlag
+    let test8Flag = latestReportData.mitigation[0].resultFlag
+
+    const flagKeyColors = { 'red': 0, 'yellow': 1, 'green': 2, 'white': 3} 
+    let test1FlagNum = flagKeyColors[test1Flag]
+    let test8FlagNum = flagKeyColors[test8Flag]
+    let mockCommitStats = reportStats.find(stat => stat.id === 'commits')
+    mockCommitStats.flags[0] = test1FlagNum
+    
+    let mockMitigationStats = reportStats.find(stat => stat.id === 'mitigation')
+    mockMitigationStats.flags[0] = test8FlagNum
+
+    console.log('hereeee', mockCommitStats, mockMitigationStats)
+  }
 
   const flagColorKeys = { 0: 'red', 1: 'yellow', 2: 'green', 3: 'white'}
 
