@@ -20,7 +20,7 @@ test8('freeCodeCamp/freeCodeCamp', "2020-04-30T15:34:20Z").then(console.log).cat
 import test7 from './src/screeners/commits/Test7.js'
 
 // test red flag
-// test7('sara-l-ai/find-the-big-commit').then(console.log).catch(console.error)
+test7('sara-l-ai/find-the-big-commit').then(console.log).catch(console.error)
 
 // test green flag
 //test7('sara-l-ai/negative-case-simplest').then(console.log).catch(console.error)
