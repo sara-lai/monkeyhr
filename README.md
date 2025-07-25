@@ -1,58 +1,35 @@
-# Candidate screening demo
+# Kampong Lah (neighbourhood app)
+<br>
+<img width="1682" height="814" alt="kl-1" src="https://github.com/user-attachments/assets/1b806593-44b7-476d-a308-a8bece5cc99e" />
+<img width="1630" height="930" alt="Screenshot 2025-07-26 at 5 35 49 AM" src="https://github.com/user-attachments/assets/bac24959-e1df-4132-a2ed-d5c6cee55ef4" />
+<img width="1694" height="805" alt="kl-2" src="https://github.com/user-attachments/assets/7ae78f69-7912-400a-a83a-b3da8427fdcb" />
+<br>
 <br>
 
-<img width="300" alt="Screenshot 2025-06-13 at 7 21 21 PM" src="https://github.com/user-attachments/assets/48e8d93e-dd0e-4ee4-b61d-c6ff6ec9a7a4" />
+This is a proof-of-concept for a neighbourhood social network in Singapore.
 
-<br>
-<br>
-
-This is a proof-of-concept for a candidate screening tool for engineering teams, prepared for a presentation. Come back soon for production version link!
-
-[demo on Vercel](https://monkeyhr.vercel.app/)
+[demo on Vercel](https://sglocals-frontend-c8kb.vercel.app/)
 
 **Next Steps**:
-  - Robust project-type recognition (zero-in on key file and sections)
-  - Caching Github API calls shared among test modules
-  - Complete the full suite of planned tests
-  - HR account features
+  - Merchant account integration
+  - Comments-on-comments
+  - Zod data validation
+  - Completed search feature
 
 **Tech Stack**:
-**React** - **Vercel** - **Vite** - **Airtable** - **Github API** - **ChatGPT API** - **Material UI**
-
-**Features Include**:
-  - A "starter set" of tests for simple Github repositories 
-  - A module that uses binary search to find large commits
-  - AI integration
-  - Complex data structure handling (including with Airtable)
-  - Custom testing script to isolate modules
+**MERN stack** - **Pusher** - **Clerk** - **Cloudinary** - **Fuse.js**
 
 **See individual files for citations/useful resources**
 
-## Key moments in development
-
-- Figma mockups (inspired by code+AI style startup)
-- Finding limits of React components: Avoid non React-like, back-end features in components (see Process.jsx, the useRef oddness)
-- Realizing `useEffect` can handle almost all of your "non React-like" needs
-- A way to test modules without running the full app flow: `node test.js` to demo
-- Using params instead of props to avoid messy state lifting or splitting of routes (see ReportFull.jsx)
-- Basic AI integration (e.g. `test.js`)
-
-## Some Highlights
-
-- `Processor.jsx` -> React-like and non-React like mix (`useEffect` & `useRef` bonanza)
-- `Dashboard.jsx` / `FullReport.jsx` -> Complex data object handling (Creating Frankenstein data of live + mock data, deep copying, nested looping, Airtable approach)
-- `Test7.js` -> Binary search possible with Github’s compare endpoint! (68 api calls to < 6)
-- `Test1.js` -> how to get lines-of-code from Github’s API (not simple!)
-- `report.css` -> clever/simple way to create a separate layout for a specific page
-- Processing screen -> `useEffect` + `setInterval` to walk through steps and show dots for tests 
-- `FullReport.jsx` -> selective rendering for edit mode, and params instead of props to avoid lifting
-
 ## Selected slides from presentation
 
-<img width="1000" alt="Screenshot 2025-06-13 at 7 01 31 PM" src="https://github.com/user-attachments/assets/22262b42-842d-47c4-858f-760c98553355" />
-<img width="1000" alt="Screenshot 2025-06-13 at 7 03 13 PM" src="https://github.com/user-attachments/assets/30b94336-240e-4a7c-86a4-ba0a0ad0c4f5" />
-<img width="1000" alt="Screenshot 2025-06-13 at 7 06 15 PM" src="https://github.com/user-attachments/assets/35d55d64-1309-49d2-a953-11e7b3d6c4fc" />
+<img width="1140" height="616" alt="Screenshot 2025-07-26 at 5 27 36 AM" src="https://github.com/user-attachments/assets/c2600812-3c28-49f5-8f44-fd3105b2cf02" />
+<img width="1164" height="637" alt="Screenshot 2025-07-26 at 5 25 32 AM" src="https://github.com/user-attachments/assets/05a8108a-c153-4169-8685-3ddb233ea2a1" />
 
+<img width="1154" height="644" alt="Screenshot 2025-07-26 at 5 26 21 AM" src="https://github.com/user-attachments/assets/4ded9a2b-84e1-46f7-9a95-fe64dd3ca324" />
 
+<img width="1162" height="659" alt="Screenshot 2025-07-26 at 5 26 01 AM" src="https://github.com/user-attachments/assets/6c27b67e-edc1-4813-bf99-dea41c9d2977" />
+<img width="1170" height="650" alt="Screenshot 2025-07-26 at 5 26 11 AM" src="https://github.com/user-attachments/assets/8a646cc9-c551-4796-b921-18e67b140af7" />
+<img width="1153" height="653" alt="Screenshot 2025-07-26 at 5 25 43 AM" src="https://github.com/user-attachments/assets/98c3b841-056c-41d3-bb09-ec2d2fd4d724" />
 
-
+<img width="1152" height="648" alt="Screenshot 2025-07-26 at 5 27 28 AM" src="https://github.com/user-attachments/assets/abdf06e6-ed47-47fc-8941-8207e3723c53" />
